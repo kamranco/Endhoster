@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minehoster – Minecraft Server</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="cube">M</span> Minehoster</a>
+    <nav><a href="#features">Funktionen</a><a href="#create">Server erstellen</a><a href="#panel">Panel</a></nav>
+    <button class="button small" id="loginBtn">Anmelden</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">DEIN SERVER. DEINE REGELN.</p>
+        <h1>Deine Minecraft-Welt.<br><span>Dein eigener Server.</span></h1>
+        <p class="intro">Plane deinen Server, wähle die Software und verwalte alles über ein übersichtliches Panel.</p>
+        <a class="button" href="#create">Server konfigurieren <span>→</span></a>
+        <p class="note">Website-Demo · Serverbetrieb muss separat eingerichtet werden</p>
+      </div>
+      <div class="hero-card">
+        <div class="status-line"><span class="dot"></span> MINEHOSTER PANEL <span class="tag">DEMO</span></div>
+        <div class="pixel-world">⛏️</div>
+        <h3>Deine Welt wartet.</h3>
+        <p>Erstelle deine Konfiguration und behalte den Überblick.</p>
+        <div class="stats"><div><strong>Java</strong><small>Edition</small></div><div><strong>Bedrock</strong><small>Crossplay möglich*</small></div><div><strong>24/7</strong><small>abhängig vom Hosting</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <p class="eyebrow">ALLES AN EINEM ORT</p>
+      <h2>Ein Panel für deine Server</h2>
+      <div class="feature-grid">
+        <article class="feature"><div class="icon">⚙️</div><h3>Software auswählen</h3><p>Wähle eine passende Server-Software für dein Projekt.</p></article>
+        <article class="feature"><div class="icon">▶</div><h3>Server verwalten</h3><p>Plane Start, Stopp und Neustart für die spätere Server-Anbindung.</p></article>
+        <article class="feature"><div class="icon">📁</div><h3>Dateien & Plugins</h3><p>Bereite einen Bereich für Welten, Plugins und Konfigurationen vor.</p></article>
+      </div>
+    </section>
+
+    <section class="section create-section" id="create">
+      <p class="eyebrow">SCHRITT 1</p>
+      <h2>Server konfigurieren</h2>
+      <p class="muted">Wähle deine Einstellungen. Diese Demo speichert noch keinen echten Server.</p>
+      <form id="serverForm" class="form-card">
+        <label>Servername<input id="serverName" maxlength="32" required placeholder="z. B. Helden SMP"></label>
+        <div class="form-row">
+          <label>Edition<select id="edition"><option>Java</option><option>Bedrock</option><option>Java + Bedrock (Geyser)</option></select></label>
+          <label>Software<select id="software"><option>Paper</option><option>Spigot</option><option>Purpur</option><option>Vanilla</option><option>Fabric</option><option>Forge</option><option>NeoForge</option><option>Velocity (Proxy)</option></select></label>
+        </div>
+        <div class="form-row">
+          <label>Minecraft-Version<input id="version" placeholder="z. B. 1.21.8" value="1.21.8" required></label>
+          <label>Arbeitsspeicher<select id="ram"><option>2 GB</option><option>4 GB</option><option>6 GB</option><option>8 GB</option></select></label>
+        </div>
+        <button class="button" type="submit">Konfiguration erstellen →</button>
+        <p id="formMessage" class="message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section panel-section" id="panel">
+      <p class="eyebrow">VORSCHAU</p>
+      <h2>Dein Serverpanel</h2>
+      <div class="panel-card">
+        <div><div class="server-icon">⛏</div></div>
+        <div class="server-info"><h3 id="previewName">Mein Minecraft-Server</h3><p id="previewDetails">Java · Paper · Version 1.21.8 · 2 GB</p><span class="status stopped">Noch nicht verbunden</span></div>
+        <div class="panel-actions"><button class="button secondary" id="startBtn" disabled>▶ Starten</button><button class="button secondary" id="stopBtn" disabled>■ Stoppen</button></div>
+      </div>
+      <p class="fineprint">*Wichtig: Das ist zunächst eine Website-Vorlage. Damit sie echte Minecraft-Server erstellt und startet, braucht sie einen Backend-Dienst, einen Server-Rechner bzw. VPS, sichere Benutzeranmeldung und eine kontrollierte Anbindung an die Server-Software. Die Start-/Stopp-Schaltflächen sind in dieser Demo deaktiviert.</p>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="cube">M</span> Minehoster</a><span>Dein Minecraft-Hosting-Projekt · Website-Demo</span></footer>
+  <div class="modal-backdrop" id="authModal" hidden>
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="closeAuth" aria-label="Schließen">×</button>
+      <p class="eyebrow">MINEHOSTER ACCOUNT</p>
+      <h2 id="authTitle">Konto erstellen</h2>
+      <p class="muted">Dies ist ein lokaler Demo-Account. Deine Daten werden nicht an einen Server gesendet.</p>
+      <div class="auth-tabs"><button type="button" class="auth-tab active" data-mode="register">Registrieren</button><button type="button" class="auth-tab" data-mode="login">Anmelden</button></div>
+      <form id="authForm">
+        <label id="usernameWrap">Benutzername<input id="authUsername" minlength="3" maxlength="24" autocomplete="username" placeholder="Dein Benutzername" required></label>
+        <label>E-Mail<input id="authEmail" type="email" autocomplete="email" placeholder="du@beispiel.de" required></label>
+        <label>Passwort<input id="authPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Mindestens 8 Zeichen" required></label>
+        <button class="button auth-submit" type="submit" id="authSubmit">Demo-Konto erstellen</button>
+        <p class="message" id="authMessage" aria-live="polite"></p>
+      </form>
+      <p class="fineprint">Für echte Konten braucht es noch ein Backend, sichere Passwort-Hashes, E-Mail-Verifizierung und eine Datenbank.</p>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
